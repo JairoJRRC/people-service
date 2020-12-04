@@ -1,0 +1,332 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Swagger People",
+        "description": "An example of people resource documentation",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/people/{id}": {
+            "get": {
+                "description": "Get people from api starwars filtered by Id",
+                "operationId": "find people by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of people to fetch",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "people response",
+                        "schema": {
+                            "$ref": "#/definitions/EntityPeople"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/people": {
+            "post": {
+                "description": "Creates a new people with parameters in spanish",
+                "operationId": "addPeople",
+                "parameters": [
+                    {
+                        "name": "people",
+                        "in": "body",
+                        "description": "Add People",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EntityPeoplePost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "People response",
+                        "schema": {
+                            "$ref": "#/definitions/EntityPeoplePostResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "People": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/EntityPeople"
+                },
+                {
+                    "required": [
+                        "id"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            ]
+        },
+        "NewPeople": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "EntityPeople": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "_data": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "height": {
+                                "type": "string"
+                            },
+                            "mass": {
+                                "type": "string"
+                            },
+                            "hair_color": {
+                                "type": "string"
+                            },
+                            "skin_color": {
+                                "type": "string"
+                            },
+                            "eye_color": {
+                                "type": "string"
+                            },
+                            "birth_year": {
+                                "type": "string"
+                            },
+                            "gender": {
+                                "type": "string"
+                            },
+                            "homeworld": {
+                                "type": "string"
+                            },
+                            "films": {
+                                "type": "object"
+                            },
+                            "species": {
+                                "type": "object"
+                            },
+                            "vehicles": {
+                                "type": "object"
+                            },
+                            "starships": {
+                                "type": "object"
+                            },
+                            "created": {
+                                "type": "string"
+                            },
+                            "edited": {
+                                "type": "string"
+                            },
+                            "url": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "_code": {
+                    "type": "number"
+                },
+                "_message": {
+                    "type": "string"
+                }
+            }
+        },
+        "EntityPeoplePost": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "height": {
+                    "type": "string"
+                },
+                "mass": {
+                    "type": "string"
+                },
+                "hair_color": {
+                    "type": "string"
+                },
+                "skin_color": {
+                    "type": "string"
+                },
+                "eye_color": {
+                    "type": "string"
+                },
+                "birth_year": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "homeworld": {
+                    "type": "string"
+                },
+                "films": {
+                    "type": "object"
+                },
+                "species": {
+                    "type": "object"
+                },
+                "vehicles": {
+                    "type": "object"
+                },
+                "starships": {
+                    "type": "object"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "edited": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "EntityPeoplePostResponse": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "_data": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "_nombre": {
+                                "type": "string"
+                            },
+                            "_altura": {
+                                "type": "string"
+                            },
+                            "_masa": {
+                                "type": "string"
+                            },
+                            "_color": {
+                                "type": "string"
+                            },
+                            "_colorPiel": {
+                                "type": "string"
+                            },
+                            "_colorOjos": {
+                                "type": "string"
+                            },
+                            "_nacimiento": {
+                                "type": "string"
+                            },
+                            "_genero": {
+                                "type": "string"
+                            },
+                            "_planeta": {
+                                "type": "string"
+                            },
+                            "_pelicula": {
+                                "type": "object"
+                            },
+                            "_especies": {
+                                "type": "object"
+                            },
+                            "_vehiculos": {
+                                "type": "object"
+                            },
+                            "_naves": {
+                                "type": "object"
+                            },
+                            "_fechaCreacion": {
+                                "type": "string"
+                            },
+                            "_fechaActualizacion": {
+                                "type": "string"
+                            },
+                            "_url": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "_code": {
+                    "type": "number"
+                },
+                "_message": {
+                    "type": "string"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
